@@ -8,11 +8,9 @@ RUN apk add --no-cache --update libmemcached-libs zlib
 RUN set -xe && \
     #Go tmp dir
     cd /tmp/ && \
-
     apk add --no-cache --update --virtual .phpize-deps $PHPIZE_DEPS && \
     apk add --no-cache --update --virtual .memcached-deps zlib-dev libmemcached-dev cyrus-sasl-dev && \
     apk add --no-cache --update --virtual .php-ext-deps zlib-dev openldap-dev libpng-dev postgresql-dev sqlite-dev icu-dev libmemcached-dev && \
-    
     #igbinary
     pecl install igbinary && \
     #memcached
@@ -26,7 +24,6 @@ RUN set -xe && \
         cd /tmp/ \
     ) && \
     docker-php-ext-enable igbinary memcached && \
-
     rm -rf /tmp/* && \
     docker-php-ext-install bcmath ldap gd pdo_pgsql pdo_sqlite pdo_mysql intl opcache && \
     apk del .memcached-deps .phpize-deps .php-ext-deps && \
