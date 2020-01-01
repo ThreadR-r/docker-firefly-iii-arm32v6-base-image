@@ -1,6 +1,7 @@
 #ThreadR
 
 FROM arm32v6/php:7.4.1-fpm-alpine
+COPY qemu-arm-static /usr/bin/
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 RUN apk add --no-cache --update libmemcached-libs zlib
